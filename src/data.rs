@@ -1,13 +1,15 @@
-[package]
-name = "todo_app"
-version = "0.1.0"
-edition = "2021"
+use druid::{Data, Lens};
+use im::Vector;
+use serde::{Serialize, Deserialize};
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+#[derive(Clone, Data, Lens, Default)]
+pub struct TodoState {
+pub todos: Vector<TodoItem>,
+pub new_text: String,
+}
 
-[dependencies]
-druid = { version = "0.8.2", features = ["im"] }
-im = "15.1.0"
-serde = { version = "1.0.152", features=["derive"] }
-serde_json = "1.0.91"
-directories = "5.0.1"
+#[derive(Clone, Data, Lens, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TodoItem {
+pub checked: bool,
+pub text: String,
+}
