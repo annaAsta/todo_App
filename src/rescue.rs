@@ -1,4 +1,4 @@
-se std::{path::Path, fs};
+use std::{path::Path, fs};
 
 use directories::BaseDirs;
 use druid::Widget;
